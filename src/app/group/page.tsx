@@ -1,156 +1,243 @@
 'use client'
-import React from 'react';
+import React, { useEffect, useState, useActionState } from 'react';
 import { Table } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
 import NavMenu from '../components/NavMenu';
+import { Form, Input, InputNumber, Popconfirm, Typography } from 'antd';
+import type { ColumnType } from 'antd/es/table';
 
 interface DataType {
-  key: React.Key;
-  name: string;
-  age: number;
-  address: string;
+  id : number
+  numberGroup	: number
+  nameGroup	: string
+  pibs : string
+  address	: string
+  area : number
+  isAlert	: boolean
+  dateCloseDepartment	: Date
 }
+  const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
+    editing,
+    dataIndex,
+    title,
+    inputType,
+    record,
+    index,
+    children,
+    ...restProps
+  }) => {
+    const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
 
-const columns: TableColumnsType<DataType> = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    showSorterTooltip: { target: 'full-header' },
-    filters: [
-      {
-        text: 'Joe',
-        value: 'Joe',
-      },
-      {
-        text: 'Jim',
-        value: 'Jim',
-      },
-      {
-        text: 'Submenu',
-        value: 'Submenu',
-        children: [
-          {
-            text: 'Green',
-            value: 'Green',
-          },
-          {
-            text: 'Black',
-            value: 'Black',
-          },
-        ],
-      },
-    ],
-    // specify the condition of filtering result
-    // here is that finding the name started with `value`
-    onFilter: (value, record) => record.name.indexOf(value as string) === 0,
-    sorter: (a, b) => a.name.length - b.name.length,
-    sortDirections: ['descend'],
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    defaultSortOrder: 'descend',
-    sorter: (a, b) => a.age - b.age,
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    filters: [
-      {
-        text: 'London',
-        value: 'London',
-      },
-      {
-        text: 'New York',
-        value: 'New York',
-      },
-    ],
-    onFilter: (value, record) => record.address.indexOf(value as string) === 0,
-  },
-];
+    return (
+      <td {...restProps}>
+        {editing ? (
+          <Form.Item
+            name={dataIndex}
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: `Please Input ${title}!`,
+              },
+            ]}
+          >
+            {inputNode}
+          </Form.Item>
+        ) : (
+          children
+        )}
+      </td>
+    );
+  };
+interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
+  editing: boolean;
+  dataIndex: string;
+  title: any;
+  inputType: 'number' | 'text';
+  record: DataType;
+  index: number;
+}
+interface EditableColumnType extends ColumnType<DataType> {
+  editable?: boolean;
+}
+function Group()
+{
+  const[data, setData] = useState<DataType[]>([])
+  const [editingKey, setEditingKey] = useState(0);
+  const [form] = Form.useForm();
 
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-  },
-  {
-    key: '4',
-    name: 'Jim Red',
-    age: 32,
-    address: 'London No. 2 Lake Park',
-  },
-  {
-    key: '5',
-    name: 'Jim Red',
-    age: 32,
-    address: 'London No. 2 Lake Park',
-  },
-  {
-    key: '6',
-    name: 'Jim Red',
-    age: 32,
-    address: 'London No. 2 Lake Park',
-  },
-  {
-    key: '7',
-    name: 'Jim Red',
-    age: 32,
-    address: 'London No. 2 Lake Park',
-  },
-  {
-    key: '8',
-    name: 'Jim Red',
-    age: 32,
-    address: 'London No. 2 Lake Park',
-  },
-  {
-    key: '9',
-    name: 'Jim Red',
-    age: 32,
-    address: 'London No. 2 Lake Park',
-  },
-  {
-    key: '10',
-    name: 'Jim Red',
-    age: 32,
-    address: 'London No. 2 Lake Park',
-  },
-];
+    const isEditing = (record: DataType) => record.id === editingKey;
+      const cancel = () => {
+      setEditingKey(0);
+    };
 
-const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
-  console.log('params', pagination, filters, sorter, extra);
-};
+    const save = async (key: React.Key) => {
+    try {
+      const row = (await form.validateFields()) as DataType;
 
-const Group: React.FC = () => (
- 
-  <div className='mg-20'>
+      const newData = [...data];
+      const index = newData.findIndex((item) => key === item.id);
+      if (index > -1) {
+        const item = newData[index];
+        newData.splice(index, 1, {
+          ...item,
+          ...row,
+        });
+        setData(newData);
+        setEditingKey(0);
+      } else {
+        newData.push(row);
+        setData(newData);
+        setEditingKey(0);
+      }
+    } catch (errInfo) {
+      console.log('Validate Failed:', errInfo);
+    }
+  };
+
+  const edit = (record: Partial<DataType> & { id:number }) => {
+    form.setFieldsValue({
+      numberGroup: '',
+      nameGroup: '',
+      pibs: '',
+      address: '',
+      area: '',
+      isAlert: '',
+      dateCloseDepartment: '',
+      ...record
+    });
+    setEditingKey(record.id || 0);
+  };
+
+  const columns: EditableColumnType[] = [
+    {
+      title: 'id',
+      dataIndex: 'id',
+      hidden:true,
+      editable: true,
+    },
+    {
+      title: 'Номер',
+      dataIndex: 'numberGroup',
+      showSorterTooltip: { target: 'full-header' },
+      editable: true,
+    },
+    {
+      title: 'Назва',
+      dataIndex: 'nameGroup',
+      defaultSortOrder: 'descend',
+      editable: true,
+    },
+    {
+      title: 'ПІП',
+      dataIndex: 'pibs',
+      defaultSortOrder: 'descend',
+      editable: true,
+    },
+    {
+      title: 'Адреса',
+      dataIndex: 'address',
+      defaultSortOrder: 'descend',
+      editable: true,
+    },
+    {
+      title: 'Площа',
+      dataIndex: 'area',
+      defaultSortOrder: 'descend',
+      editable: true,
+    },
+    {
+      title: 'Підкреслення',
+      dataIndex: 'isAlert',
+      defaultSortOrder: 'descend',
+      editable: true,
+    },
+    {
+      title: 'Дата закриття',
+      dataIndex: 'dateCloseDepartment',
+      defaultSortOrder: 'descend',
+      editable: true,
+    },
+    {
+        title: 'operation',
+        dataIndex: 'operation',
+        render: (_: any, record: DataType) => {
+          const editable = isEditing(record);
+          return editable ? (
+            <span>
+              <Typography.Link onClick={() => save(record.id)} style={{ marginInlineEnd: 8 }}>
+                Save
+              </Typography.Link>
+              <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+                <a>Cancel</a>
+              </Popconfirm>
+            </span>
+          ) : (
+            <Typography.Link disabled={editingKey !== 0} onClick={() => edit(record)}>
+              Edit
+            </Typography.Link>
+          );
+        },
+      },
+  ];
+
+  const mergedColumns = columns.map((col) => {
+  if (!col.editable) {
+    return col;
+  }
+
+  return {
+    ...col,
+    onCell: (record: DataType) => ({
+      record,
+      inputType: typeof record[col.dataIndex as keyof DataType] === 'number' ? 'number' : 'text',
+      dataIndex: col.dataIndex!,
+      title: String(col.title),
+      editing: isEditing(record),
+    }),
+  };
+});
+
+
+  const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
+    console.log('params', pagination, filters, sorter, extra);
+  };
+
+  useEffect( () =>  {
+    async function GetData() {
+      try{
+        const response = await fetch('http://localhost:5294/api/group/GETcontollerGroup');
+        const data = await response.json()
+        setData(data);
+      }
+      catch(error)
+      {
+        console.warn(error)
+      }
+    }
+    GetData()
+  }, [])
+
+  return(
+     <div className='mg-20'>
      <NavMenu /> 
-  <Table<DataType> 
-    columns={columns}
-    dataSource={data}
-    onChange={onChange}
-    showSorterTooltip={{ target: 'sorter-icon' }}
-    className="bg-white/10 backdrop-blur-lg border border-white/20 shadow-md rounded-2xl p-4 mt-15"
-  />
+     <Form form={form} component={false}>
+      <Table<DataType> 
+         rowKey="id"
+        components={{
+          body: {
+            cell: EditableCell,
+          },
+        }}
+        columns={mergedColumns}
+        dataSource={data}
+        onChange={onChange}
+        showSorterTooltip={{ target: 'sorter-icon' }}
+        className="bg-white/10 backdrop-blur-lg border border-white/20 shadow-md rounded-2xl p-4 mt-15"
+      />
+    </Form>
 </div>
-
-);
-
-
+  )
+}
 
 export default Group;
