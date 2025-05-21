@@ -1,10 +1,10 @@
 'use client'
-import React, { useEffect, useState, useActionState } from 'react';
 import { Table } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
 import NavMenu from '../components/NavMenu';
-import { Form, Input, InputNumber, Popconfirm, Typography } from 'antd';
+import { Form, Input, InputNumber, Popconfirm, Typography, Button } from 'antd';
 import type { ColumnType } from 'antd/es/table';
+import React, { useEffect, useState, useActionState } from 'react';
 
 interface DataType {
   id : number
@@ -15,6 +15,8 @@ interface DataType {
   area : number
   isAlert	: boolean
   dateCloseDepartment	: Date
+  isNew?: boolean;
+  isEdited?: boolean;
 }
   const EditableCell: React.FC<React.PropsWithChildren<EditableCellProps>> = ({
     editing,
@@ -63,6 +65,9 @@ interface EditableColumnType extends ColumnType<DataType> {
 function Group()
 {
   const[data, setData] = useState<DataType[]>([])
+  const[newData, setNewData] = useState<DataType[]>([])
+  const[updateData, setUpdateData] = useState<DataType[]>([])
+
   const [editingKey, setEditingKey] = useState(0);
   const [form] = Form.useForm();
 
@@ -82,6 +87,7 @@ function Group()
         newData.splice(index, 1, {
           ...item,
           ...row,
+          isEdited: !item.isNew,
         });
         setData(newData);
         setEditingKey(0);
@@ -197,7 +203,22 @@ function Group()
     }),
   };
 });
-
+ const handleAdd = () => {
+  const maxId = data.length > 0 ? Math.max(...data.map(item => item.id)) : 0;
+    const newData: DataType = {
+      id : maxId + 1,
+      numberGroup	: 0,
+      nameGroup	: '',
+      pibs : '',
+      address	: '',
+      area : 0,
+      isAlert	: false,
+      dateCloseDepartment	: new Date(),
+      isNew: true
+    };
+    setData(prev => [...prev, newData]);
+    edit(newData)
+  };
 
   const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
@@ -221,6 +242,9 @@ function Group()
   return(
      <div className='mg-20'>
      <NavMenu /> 
+      <Button onClick={handleAdd} type="primary" style={{ marginBottom: 16 }}>
+        Add a row
+      </Button>
      <Form form={form} component={false}>
       <Table<DataType> 
          rowKey="id"
