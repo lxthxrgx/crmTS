@@ -2,9 +2,11 @@
 import { Table } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
 import NavMenu from '../components/NavMenu';
-import { Form, Input, InputNumber, Popconfirm, Typography, Button } from 'antd';
+import { Form, Input, InputNumber, Popconfirm, Typography, Button, DatePicker, Checkbox } from 'antd';
 import type { ColumnType } from 'antd/es/table';
 import React, { useEffect, useState, useActionState } from 'react';
+
+const {TextArea} = Input
 
 interface DataType {
   id : number
@@ -28,7 +30,20 @@ interface DataType {
     children,
     ...restProps
   }) => {
-    const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+    let inputNode;
+
+    if (dataIndex === 'address' || dataIndex === 'pibs') {
+    inputNode = <TextArea autoSize={{ minRows: 2, maxRows: 6 }} />;
+  } else if (inputType === 'number') {
+    inputNode = <InputNumber />;
+  }else if (dataIndex === 'isAlert') {
+    inputNode = < />;
+  }  
+  else if (inputType === 'date') {
+    inputNode = <DatePicker format="YYYY-MM-DD" />;
+  } else {
+    inputNode = <Input />;
+  }
 
     return (
       <td {...restProps}>
@@ -55,7 +70,7 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
   dataIndex: string;
   title: any;
-  inputType: 'number' | 'text';
+  inputType: 'number' | 'text' | 'date';
   record: DataType;
   index: number;
 }
