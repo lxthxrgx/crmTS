@@ -9,6 +9,8 @@ export default function NavMenu() {
         <Link href="/group" className="hover:underline">Групи</Link>
         <Link href="/contact" className="hover:underline">Суборенда</Link>
         <Link href="/contact" className="hover:underline">Охорона</Link>
+        <Link href="/agreements-now" className="hover:underline">Договори</Link>
+        
     </nav>
   );
 }

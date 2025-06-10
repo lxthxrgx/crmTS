@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import NavMenu from './components/NavMenu'; // подключаем наше меню
+import NavMenu from './components/NavMenu';
 
 export const metadata: Metadata = {
   title: 'My App',
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-background text-foreground">
-        <NavMenu /> {/* Меню будет на всех страницах */}
+        <NavMenu />
         {children}
       </body>
     </html>
