@@ -1,9 +1,46 @@
 'use client'
 import { useRouter } from 'next/navigation';
+import ISubleaseActTov from '@/app/model/ISubleaseActTov';
+import { useState } from 'react';
 
 export default function SubleaseActTov()
 {
     const router = useRouter();
+    const[data, setData] = useState<ISubleaseActTov>
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+
+      const formatDateOnly = (date: string | Date): string =>
+        new Date(date).toISOString().split("T")[0];
+
+      const requestBody = {
+        data: {
+          ...data,
+          handoverPeriodDays: parseInt(data.handoverPeriodDays as any),
+          rentalPeriodMonths: parseInt(data.rentalPeriodMonths as any),
+
+          rentPaymentDueDay: formatDateOnly(data.rentPaymentDueDay),
+
+          contractStartDate: formatDateOnly(data.contractStartDate),
+          contractEndDate: formatDateOnly(data.contractEndDate),
+        },
+      };
+        const res = await fetch('http://localhost:8080/api/private/agreements', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody),
+        });
+
+        if (res.ok) {
+          alert('Договір успішно збережено!');
+        } else {
+          alert('Помилка при збереженні.');
+        }
+    };
+
     return(
         
          <div className="text-white min-h-screen p-6">
@@ -14,56 +51,77 @@ export default function SubleaseActTov()
       </button>
 
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6">Форма договору оренди</h1>
-        <form  className="space-y-4">
+        <h1 className="text-2xl font-bold mb-6">Форма договору суборенди</h1>
+          <form onSubmit={handleSubmit} className="space-y-4">
 
-              <select
-        name="idLessor"
-        className="w-full p-3 bg-zinc-800 rounded"
-      >
-        <option value="">Оберіть орендодавця</option>
-      </select>
+            <label className="block">Номер договору</label>
+            <input type="text" name="ContractNumber" className="w-full p-3  bg-slate-500 text-black rounded" />
 
-      <select
-        name="idTenant"
+            <label className="block">Дата створення</label>
+            <input type="text" name="CreationDate" className="w-full p-3 bg-slate-500 text-black rounded" />
 
-        className="w-full p-3 bg-zinc-800 rounded"
-      >
-        <option value="">Оберіть орендаря</option>
-      </select>
+            <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
+              <label className="block">ПІП Суборендодавця</label>
+              <input type="text" name="PipSublessor" className="w-full p-3 bg-slate-500 text-black rounded" />
 
-          {/* Block 1.8 */}
-          <input type="text" name="capitalRepairResponsible" placeholder="Капітальний ремонт - хто відповідає"   className="w-full p-3 bg-zinc-800 rounded" />
-          <input type="text" name="currentRepairResponsible" placeholder="Поточний ремонт - хто відповідає"  className="w-full p-3 bg-zinc-800 rounded" />
+              <label className="block">ЄДРПОУ Суборендодавця</label>
+              <input type="text" name="rnokppSublessor" className="w-full p-3 bg-slate-500 text-black rounded" />
 
-          {/* Block 3.1 & 4.1 */}
-          <input type="number" name="handoverPeriodDays" placeholder="Термін передачі житла (днів)"  className="w-full p-3 bg-zinc-800 rounded" />
-          <input type="number" name="rentalPeriodMonths" placeholder="Період оренди (місяців)"  className="w-full p-3 bg-zinc-800 rounded" />
+              <label className="block">Адреса Суборендодавця</label>
+              <input type="text" name="addressSublessor" className="w-full p-3 bg-slate-500 text-black rounded" />
+            </div>
+            
+             <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
+            <label className="block">ПІП директора</label>
+            <input type="text" name="PipDirector" className="w-full p-3 bg-slate-500 text-black rounded" />
 
-          {/* Block 5.1 - 5.4 */}
-          <input type="number" name="monthlyRentAmount" placeholder="Місячна сума оренди"  className="w-full p-3 bg-zinc-800 rounded" />
-          <input type="text" name="monthlyRentText" placeholder="Текст до суми оренди" className="w-full p-3 bg-zinc-800 rounded" />
-                    <label className="block">Крайній день оплати оренди</label>
-          <input type="date" name="rentPaymentDueDay"  className="w-full p-3 bg-zinc-800 rounded" />
-          <input type="number" name="securityDepositAmount" placeholder="Сума застави" className="w-full p-3 bg-zinc-800 rounded" />
-          <input type="text" name="securityDepositText" placeholder="Текст до застави" className="w-full p-3 bg-zinc-800 rounded" />
+            <label className="block">ПІП директора (скорочено)</label>
+            <input type="text" name="PipsDirector" className="w-full p-3 bg-slate-500 text-black rounded" />
 
-          {/* Block 8.2 */}
-          <input type="number" name="minimumDebtForPenalty" placeholder="Мін. борг для штрафу" className="w-full p-3 bg-zinc-800 rounded" />
-          <input type="text" name="minimumDebtText" placeholder="Текст до мінімального боргу" className="w-full p-3 bg-zinc-800 rounded" />
-          <input type="number" name="penaltyAmount" placeholder="Сума штрафу" className="w-full p-3 bg-zinc-800 rounded" />
-          <input type="text" name="penaltyText" placeholder="Текст до штрафу" className="w-full p-3 bg-zinc-800 rounded" />
+            </div>
 
-          {/* Block 10.3 */}
-          <label className="block">Дата початку договору</label>
-          <input type="date" name="contractStartDate" className="w-full p-3 bg-zinc-800 rounded" />
-          <label className="block">Дата завершення договору</label>
-          <input type="date" name="contractEndDate" className="w-full p-3 bg-zinc-800 rounded" />
+            <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
+              <label className="block">Площа приміщення</label>
+              <input type="number" name="RoomArea" className="w-full p-3 bg-slate-500 text-black rounded" />
 
-          <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg">
-            Зберегти договір
-          </button>
-        </form>
+              <label className="block">Площа приміщення (текстом)</label>
+              <input type="text" name="RoomAreaText" className="w-full p-3 bg-slate-500 text-black rounded" />
+
+              <label className="block">Адреса приміщення</label>
+              <input type="number" name="RoomAreaAddress" className="w-full p-3 bg-slate-500 text-black rounded" />
+            </div>
+
+            <label className="block">Номер договору (Предмет договору)</label>
+            <input type="text" name="subleaseDopContractNumber" className="w-full p-3  bg-slate-500 text-black rounded" />
+
+            <label className="block">Дата укладання договору</label>
+            <input type="text" name="subleaseDopStartDate" className="w-full p-3 bg-slate-500 text-black rounded" />
+
+            <label className="block">ПІП Орендодавця</label>
+            <input type="text" name="subleaseDopName" className="w-full p-3 bg-slate-500 text-black rounded" />
+
+            <label className="block">ЄДРПОУ-РНОКПП Орендодавця</label>
+            <input type="text" name="subleaseDopRnokpp" className="w-full p-3 bg-slate-500 text-black rounded" />
+            
+            <label className="block">Кінцева дата дії договору</label>
+            <input type="text" name="StrokDii" className="w-full p-3 bg-slate-500 text-black rounded" />
+
+            <label className="block">Строк дії договору</label>
+            <input type="text" name="StrokDii" className="w-full p-3 bg-slate-500 text-black rounded" />
+
+            <label className="block">Суборендна плата</label>
+            <input type="number" name="Pricing" className="w-full p-3 bg-slate-500 text-black rounded" />
+
+            <label className="block">Суборендна плата(текстом)</label>
+            <input type="text" name="PricingText" className="w-full p-3 bg-slate-500 text-black rounded" />
+
+            <label className="block">Рахунок та назва банку</label>
+            <input type="text" name="BanckAccount" className="w-full p-3 bg-slate-500 text-black rounded" />
+
+            <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg">
+              Зберегти договір
+            </button>
+          </form>
       </div>
     </div>
     )
