@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import ISubleaseActTov from '@/app/model/ISubleaseActTov';
 import { useState } from 'react';
+import { formatUkrCurrencyText } from '@/app/components/numberToText';
 
 export default function SubleaseActTov()
 {
@@ -39,6 +40,41 @@ export default function SubleaseActTov()
         } else {
           alert('Помилка при збереженні.');
         }
+    };
+
+    const handleChange = (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    ) => {
+      const { name, value } = e.target;
+
+      setData((prev) => {
+        const updated = { ...prev, [name]: value };
+
+        const numericValue = parseFloat(value);
+
+        switch (name) {
+          case 'monthlyRentAmount':
+            updated.monthlyRentAmount = numericValue;
+            updated.monthlyRentText = formatUkrCurrencyText(numericValue);
+            break;
+          case 'securityDepositAmount':
+            updated.securityDepositAmount = numericValue;
+            updated.securityDepositText = formatUkrCurrencyText(numericValue);
+            break;
+          case 'minimumDebtForPenalty':
+            updated.minimumDebtForPenalty = numericValue;
+            updated.minimumDebtText = formatUkrCurrencyText(numericValue);
+            break;
+          case 'penaltyAmount':
+            updated.penaltyAmount = numericValue;
+            updated.penaltyText = formatUkrCurrencyText(numericValue);
+            break;
+          default:
+            break;
+        }
+
+        return new Agreement(updated);
+      });
     };
 
     return(
