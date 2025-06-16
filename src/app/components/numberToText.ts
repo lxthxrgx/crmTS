@@ -27,7 +27,9 @@ export function formatUkrCurrencyText(amount: number): string {
       million: ['мільйон', 'мільйони', 'мільйонів'],
       billion: ['мільярд', 'мільярди', 'мільярдів'],
       hryvnia: ['гривня', 'гривні', 'гривень'],
+      hrn: ['грн.'],
       coin: ['копійка', 'копійки', 'копійок'],
+      coin2: ['коп.']
     };
   
     function getWordForm(n: number, form: string[]): string {
@@ -81,9 +83,11 @@ export function formatUkrCurrencyText(amount: number): string {
   
     const [hryvnia, coins] = splitNumber(amount);
   
-    const hryvniaText = convertFull(hryvnia) + ' ' + getWordForm(hryvnia, forms.hryvnia);
+    // const hryvniaText = '(' + convertFull(hryvnia) + ')' + ' ' + getWordForm(hryvnia, forms.hrn);
+    const hryvniaText = '(' + convertFull(hryvnia) + ') грн.';
     const coinStr = coins.toString().padStart(2, '0');
-    const coinText = coinStr + ' ' + getWordForm(coins, forms.coin);
+    // const coinText = coinStr + ' ' + getWordForm(coins, forms.coin);
+    const coinText = coinStr + ' коп.';
   
     return `${capitalize(hryvniaText)} ${coinText}`;
   }
@@ -92,3 +96,8 @@ export function formatUkrCurrencyText(amount: number): string {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
   
+
+export function AreaToText()
+{
+
+}
