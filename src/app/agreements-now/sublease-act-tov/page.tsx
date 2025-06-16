@@ -30,20 +30,18 @@ export default function SubleaseActTov() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    console.log('Отправка формы. Текущие данные:', data);
     const formatDateOnly = (date: string | Date): string =>
       new Date(date).toISOString().split("T")[0];
 
     const requestBody = {
-      data: {
-        ...data,
-        CreationDate: formatDateOnly(data.CreationDate),
-        subleaseDopStartDate: formatDateOnly(data.subleaseDopStartDate),
-        StrokDii: formatDateOnly(data.StrokDii)
-      },
+      ...data,
+      CreationDate: formatDateOnly(data.CreationDate),
+      subleaseDopStartDate: formatDateOnly(data.subleaseDopStartDate),
+      StrokDii: formatDateOnly(data.StrokDii)
     };
 
-    const res = await fetch('http://localhost:8080/api/private/agreements', {
+    const res = await fetch('http://localhost:5294/api/Ping/TestTree', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(requestBody),
