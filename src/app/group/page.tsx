@@ -1,4 +1,12 @@
-// 'use client'
+'use client'
+export default function GroupPage() {
+  return (
+    <div>
+      <h1>Група</h1>
+    </div>
+  );
+}
+
 // import { Table } from 'antd';
 // import type { TableColumnsType, TableProps } from 'antd';
 // import NavMenu from '../components/NavMenu';
