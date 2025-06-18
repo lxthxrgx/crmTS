@@ -45,7 +45,7 @@ export function formatUkrCurrencyText(amount: number): string {
       const h = Math.floor(n / 100);
       const t = Math.floor((n % 100) / 10);
       const o = n % 10;
-      let words = [];
+      const words = [];
   
       if (h > 0) words.push(hundreds[h]);
       if (t === 1) {

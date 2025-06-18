@@ -56,7 +56,7 @@ export default function SubleaseActTov() {
     const { name, value } = e.target;
 
     setData((prev) => {
-      const updated: any = { ...prev, [name]: value };
+      const updated: ISubleaseActTov = { ...prev, [name]: value };
 
       const numericValue = parseFloat(value);
 
