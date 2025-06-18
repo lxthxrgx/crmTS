@@ -10,7 +10,7 @@ export default function NavMenu() {
         <Link href="/contact" className="hover:underline">Суборенда</Link>
         <Link href="/contact" className="hover:underline">Охорона</Link>
         <Link href="/agreements-now" className="hover:underline">Договори</Link>
-        
+        <Link href="/ecp" className="hover:underline">ЕЦП</Link>
     </nav>
   );
 }
