@@ -88,7 +88,6 @@ export default function Aggrements() {
 
     return (
         <div>
-             <NavMenu /> 
               <div className="p-4">
             <button
                 onClick={ ()=> router.push('/')}

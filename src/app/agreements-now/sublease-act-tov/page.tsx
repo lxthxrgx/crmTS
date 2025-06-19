@@ -89,7 +89,7 @@ export default function SubleaseActTov() {
       >← Назад</button>
 
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6">Форма договору суборенди</h1>
+        <h1 className="text-2xl font-bold mb-6 text-center">Форма договору суборенди</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
 
           <label className="block">Номер договору</label>
@@ -98,58 +98,65 @@ export default function SubleaseActTov() {
           <label className="block">Дата створення</label>
           <input type="date" name="CreationDate" value={data.CreationDate.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-slate-500 text-black rounded" />
 
+          <label className="block">Кінцева дата дії договору</label>
+          <input type="date" name="StrokDii" value={data.StrokDii.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+
           <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
-            <label className="block">ПІП Суборендодавця</label>
+            <h1 className='text-center'>Суборендодавець</h1>
+            <label className="block">ПІП</label>
             <input type="text" name="PipSublessor" value={data.PipSublessor} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
 
-            <label className="block">ЄДРПОУ Суборендодавця</label>
+            <label className="block">ЄДРПОУ</label>
             <input type="text" name="rnokppSublessor" value={data.rnokppSublessor} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
 
-            <label className="block">Адреса Суборендодавця</label>
+            <label className="block">Адреса</label>
             <input type="text" name="addressSublessor" value={data.addressSublessor} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+
+            <label className="block">Рахунок та назва банку</label>
+            <input type="text" name="BanckAccount" value={data.BanckAccount} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
           </div>
 
-          {/* Другий блок */}
           <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
-            <label className="block">ПІП директора</label>
+            <h1 className='text-center'>Директор</h1>
+            <label className="block">ПІП</label>
             <input type="text" name="PipDirector" value={data.PipDirector} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
 
-            <label className="block">ПІП директора (скорочено)</label>
+            <label className="block">ПІП (скорочено)</label>
             <input type="text" name="PipsDirector" value={data.PipsDirector} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
           </div>
+          
+          <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
+            <h1 className='text-center'>Приміщення</h1>
+            <label className="block">Площа</label>
+            <input type="number" name="RoomArea" value={data.RoomArea} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
 
-          <label className="block">Площа приміщення</label>
-          <input type="number" name="RoomArea" value={data.RoomArea} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+            <label className="block">Площа (текстом)</label>
+            <input type="text" name="RoomAreaText" value={data.RoomAreaText} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
 
-          <label className="block">Площа приміщення (текстом)</label>
-          <input type="text" name="RoomAreaText" value={data.RoomAreaText} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+            <label className="block">Місцезнаходження</label>
+            <input type="text" name="RoomAreaAddress" value={data.RoomAreaAddress} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
 
-          <label className="block">Адреса приміщення</label>
-          <input type="text" name="RoomAreaAddress" value={data.RoomAreaAddress} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+            <label className="block">Суборендна плата</label>
+            <input type="number" name="Pricing" value={data.Pricing} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+
+            <label className="block">Суборендна плата (текстом)</label>
+            <input type="text" name="PricingText" value={data.PricingText} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+          </div>
 
           <label className="block">Номер договору (Предмет договору)</label>
           <input type="text" name="subleaseDopContractNumber" value={data.subleaseDopContractNumber} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
 
           <label className="block">Дата укладання договору</label>
           <input type="date" name="subleaseDopStartDate" value={data.subleaseDopStartDate.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+          
+          <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
+            <h1 className='text-center'>Орендодавець</h1>
+            <label className="block">ПІП</label>
+            <input type="text" name="subleaseDopName" value={data.subleaseDopName} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
 
-          <label className="block">ПІП Орендодавця</label>
-          <input type="text" name="subleaseDopName" value={data.subleaseDopName} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
-
-          <label className="block">ЄДРПОУ-РНОКПП Орендодавця</label>
-          <input type="text" name="subleaseDopRnokpp" value={data.subleaseDopRnokpp} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
-
-          <label className="block">Кінцева дата дії договору</label>
-          <input type="date" name="StrokDii" value={data.StrokDii.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-slate-500 text-black rounded" />
-
-          <label className="block">Суборендна плата</label>
-          <input type="number" name="Pricing" value={data.Pricing} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
-
-          <label className="block">Суборендна плата (текстом)</label>
-          <input type="text" name="PricingText" value={data.PricingText} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
-
-          <label className="block">Рахунок та назва банку</label>
-          <input type="text" name="BanckAccount" value={data.BanckAccount} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+            <label className="block">ЄДРПОУ-РНОКПП</label>
+            <input type="text" name="subleaseDopRnokpp" value={data.subleaseDopRnokpp} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+          </div>
 
           <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg">
             Зберегти договір
