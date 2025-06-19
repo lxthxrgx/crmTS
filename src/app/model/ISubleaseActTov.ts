@@ -1,5 +1,7 @@
 export default interface ISubleaseActTov
 {
+  NameGroup: string,
+  NumberGroup: number,
   ContractNumber: string;
   CreationDate: Date;
   PipSublessor:string;

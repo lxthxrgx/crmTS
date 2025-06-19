@@ -8,6 +8,8 @@ export default function SubleaseActTov() {
   const router = useRouter();
 
   const [data, setData] = useState<ISubleaseActTov>({
+    NameGroup: '',
+    NumberGroup: 0,
     ContractNumber: '',
     CreationDate: new Date(),
     PipSublessor: '',
@@ -92,14 +94,22 @@ export default function SubleaseActTov() {
         <h1 className="text-2xl font-bold mb-6 text-center">Форма договору суборенди</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
 
-          <label className="block">Номер договору</label>
-          <input type="text" name="ContractNumber" value={data.ContractNumber} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+          <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
+            <label className="block">Номер відділення</label>
+            <input type="text" name="NumberGroup" value={data.NumberGroup} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
 
-          <label className="block">Дата створення</label>
-          <input type="date" name="CreationDate" value={data.CreationDate.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+            <label className="block">Найменування відділення</label>
+            <input type="text" name="NameGroup" value={data.NameGroup} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
 
-          <label className="block">Кінцева дата дії договору</label>
-          <input type="date" name="StrokDii" value={data.StrokDii.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+            <label className="block">Номер договору</label>
+            <input type="text" name="ContractNumber" value={data.ContractNumber} onChange={handleChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+
+            <label className="block">Дата створення</label>
+            <input type="date" name="CreationDate" value={data.CreationDate.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+
+            <label className="block">Кінцева дата дії договору</label>
+            <input type="date" name="StrokDii" value={data.StrokDii.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-slate-500 text-black rounded" />
+          </div>
 
           <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
             <h1 className='text-center'>Суборендодавець</h1>
