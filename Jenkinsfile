@@ -1,22 +1,52 @@
-pipeline{
-    agent any
-    tools {nodejs "my-nodejs"}
-    stages{
-        stage("Build"){
-            steps{
-                nodejs("my-nodejs") {
-                    sh 'npm install'
-                    sh 'npm run build'
-                }
-            }
-        }
-        stage("Start"){
-            steps{
-                nodejs("my-nodejs") {
-                    sh 'npm start'
-                }
-                echo "App started successfully"
-            }
-        }
+pipeline {
+  agent any
+
+  environment {
+    IMAGE_NAME = "nextjs-app"
+    K8S_NAMESPACE = "default"
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
     }
+
+    stage('Build Docker Image') {
+      steps {
+        script {
+          sh 'docker build -t $IMAGE_NAME .'
+        }
+      }
+    }
+
+    stage('Load into Minikube') {
+      steps {
+        script {
+          sh 'minikube image load $IMAGE_NAME'
+        }
+      }
+    }
+
+    stage('Deploy to Kubernetes') {
+      steps {
+        script {
+          sh '''
+            kubectl apply -f k8s/deployment.yaml
+            kubectl apply -f k8s/service.yaml
+          '''
+        }
+      }
+    }
+  }
+
+  post {
+    success {
+      echo "✅ Deployment successful"
+    }
+    failure {
+      echo "❌ Deployment failed"
+    }
+  }
 }
