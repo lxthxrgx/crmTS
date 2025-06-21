@@ -15,25 +15,14 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-          sh 'docker build -t $IMAGE_NAME .'
-      }
-    }
-
-    stage('Load into Minikube') {
-      steps {
-        script {
-          sh 'minikube image load $IMAGE_NAME'
-        }
+        sh 'docker build -t $IMAGE_NAME .'
       }
     }
 
     stage('Deploy to Kubernetes') {
       steps {
         script {
-          sh '''
-            kubectl apply -f k8s/deployment.yaml
-            kubectl apply -f k8s/service.yaml
-          '''
+          sh 'kubectl apply -f k8s/deployment.yaml && kubectl apply -f k8s/service.yaml'
         }
       }
     }
