@@ -15,15 +15,13 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        sh 'docker build -t $IMAGE_NAME .'
+        bat "docker build -t %IMAGE_NAME% ."
       }
     }
 
     stage('Deploy to Kubernetes') {
       steps {
-        script {
-          sh 'kubectl apply -f k8s/deployment.yaml && kubectl apply -f k8s/service.yaml'
-        }
+        bat "kubectl apply -f k8s\\deployment.yaml && kubectl apply -f k8s\\service.yaml"
       }
     }
   }
