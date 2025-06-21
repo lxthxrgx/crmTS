@@ -3,7 +3,6 @@
 import Link from "next/link"
 import FeatureCard from "../components/Card"
 import { useRouter } from 'next/navigation'
-import NavMenu from "../components/NavMenu"
 
 export default function Aggrements() {
     const router = useRouter()
