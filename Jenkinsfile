@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    IMAGE_NAME = "CRM-Frontend"
+    IMAGE_NAME = "crm-frontend"
     K8S_NAMESPACE = "default"
   }
 
