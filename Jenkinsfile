@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    IMAGE_NAME = "nextjs-app"
+    IMAGE_NAME = "CRM-Frontend"
     K8S_NAMESPACE = "default"
   }
 
@@ -15,9 +15,7 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        script {
           sh 'docker build -t $IMAGE_NAME .'
-        }
       }
     }
 
