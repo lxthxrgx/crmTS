@@ -4,6 +4,7 @@ pipeline {
   environment {
     IMAGE_NAME = "crm-frontend"
     K8S_NAMESPACE = "default"
+    KUBECONFIG = "/root/.kube/config"
   }
 
   stages {
@@ -13,15 +14,18 @@ pipeline {
       }
     }
 
-    stage('Build Docker Image') {
+    stage('Docker Build') {
       steps {
+        sh 'docker version'
         sh "docker build -t ${IMAGE_NAME} ."
       }
     }
 
-    stage('Deploy to Kubernetes') {
+    stage('K8s Deploy') {
       steps {
-        sh "kubectl apply -f k8s/deployment.yaml && kubectl apply -f k8s/service.yaml"
+        sh 'kubectl version --client'
+        sh "kubectl apply -n ${K8S_NAMESPACE} -f k8s/deployment.yaml"
+        sh "kubectl apply -n ${K8S_NAMESPACE} -f k8s/service.yaml"
       }
     }
   }
