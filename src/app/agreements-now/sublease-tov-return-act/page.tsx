@@ -1,13 +1,13 @@
 'use client'
-import ISubleaseTovTerminate from "@/app/model/ISubleaseTovTermiante";
+import ISubleaseTovReturnAct from '@/app/model/ISubleaseTovReturnAct';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { AreaToText } from '@/app/components/numberToText';
 
-export default function SubleaseTovTerminate() {
+export default function SubleaseTovReturnAct() {
     const router = useRouter();
 
-    const [data, setData] = useState<ISubleaseTovTerminate>({
+    const [data, setData] = useState<ISubleaseTovReturnAct>({
         NumberGroup: 0,
         NameGroup: '',
         ContractNumber: '',
@@ -18,7 +18,6 @@ export default function SubleaseTovTerminate() {
         addressSublessor: '',
         PipDirector: '',
         PipsDirector: '',
-        EndContractData: new Date(),
         RoomArea: 0,
         RoomAreaText: '',
         RoomAreaAddress: '',
@@ -35,17 +34,16 @@ export default function SubleaseTovTerminate() {
         ...data,
         CreationDate: formatDateOnly(data.CreationDate),
         CreationContractDate: formatDateOnly(data.CreationContractDate),
-        EndContractData: formatDateOnly(data.EndContractData)
         };
 
         try {
-        const res = await fetch('http://localhost:5294/api/sublease_tov_termination/create', {
+        const res = await fetch('http://localhost:5294/api/sublease_tov_return_act/create', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(requestBody),
         });
 
-        alert(res.ok ? 'Договір успішно збережено!' : 'Помилка при збереженні.');
+        alert(res.ok ? 'Акт успішно збережено!' : 'Помилка при збереженні.');
         } catch (error) {
         console.error('Fetch error:', error);
         alert('Помилка з’єднання з сервером.');
@@ -58,7 +56,7 @@ export default function SubleaseTovTerminate() {
         const { name, value } = e.target;
 
         setData((prev) => {
-        const updated: ISubleaseTovTerminate = { ...prev, [name]: value };
+        const updated: ISubleaseTovReturnAct = { ...prev, [name]: value };
 
         const numericValue = parseFloat(value);
         const numericValue2 = parseFloat(value);
@@ -90,7 +88,7 @@ export default function SubleaseTovTerminate() {
         >← Назад</button>
 
         <div className="max-w-4xl mx-auto">
-            <h1 className="text-2xl font-bold mb-6 text-center">Форма додаткової угоди про припинення договору суборенди</h1>
+            <h1 className="text-2xl font-bold mb-6 text-center">Форма акту для повернення приміщення</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
 
             <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
@@ -101,9 +99,6 @@ export default function SubleaseTovTerminate() {
                 <input type="text" name="NameGroup" value={data.NameGroup} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }} />
                 <label className="block">Дата створення угоди</label>
                 <input type="date" name="CreationDate" value={data.CreationDate.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
-                
-                <label className="block">Дата припинення договору</label>
-                <input type="date" name="EndContractData" value={data.EndContractData.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
             </div>
 
             <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>

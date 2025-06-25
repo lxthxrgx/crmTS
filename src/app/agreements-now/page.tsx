@@ -12,19 +12,19 @@ export default function Aggrements() {
             title: "Договір + Акт - ФОП",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "📄",
-            href: "/agreements/home-rent"
+            href: "/agreements-now/home-rent"
         },
         {
             title: "Договір припинення  - ФОП",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "🚫",
-            href: "/agreements/home-rent"
+            href: "/agreements-now/home-rent"
         },
         {
             title: "Договір повернення  - ФОП",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "↩️",
-            href: "/agreements/home-rent"
+            href: "/agreements-now/home-rent"
         },
         {
             title: "Договір + Акт - ТОВ",
@@ -42,7 +42,7 @@ export default function Aggrements() {
             title: "Договір повернення - ТОВ",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "↩️",
-            href: "/agreements/home-rent"
+            href: "/agreements-now/sublease-tov-terminate"
         },
     ]
 
@@ -51,37 +51,37 @@ export default function Aggrements() {
             title: "Договір + Акт - ТОВ",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "📄",
-            href: "/agreements/home-rent"
+            href: "/agreements-now/home-rent"
         },
         {
             title: "Договір припинення - ТОВ",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "🚫",
-            href: "/agreements/home-rent"
+            href: "/agreements-now/home-rent"
         },
         {
             title: "Договір повернення - ТОВ",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "↩️",
-            href: "/agreements/home-rent"
+            href: "/agreements-now/home-rent"
         },
         {
             title: "Договір + Акт - ФОП",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "📄",
-            href: "/agreements/home-rent"
+            href: "/agreements-now/home-rent"
         },
         {
             title: "Договір припинення  - ФОП",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "🚫",
-            href: "/agreements/home-rent"
+            href: "/agreements-now/home-rent"
         },
         {
             title: "Договір повернення  - ФОП",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "↩️",
-            href: "/agreements/home-rent"
+            href: "/agreements-now/home-rent"
         },
     ]
 
