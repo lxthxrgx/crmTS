@@ -30,13 +30,13 @@ export default function Aggrements() {
             title: "Договір + Акт - ТОВ",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "📄",
-            href: "/agreements-now/sublease-act-tov"
+            href: "/agreements-now/sublease-tov-dog-act"
         },
         {
-            title: "Договір припинення - ТОВ",
+            title: "Додаткова угода про припинення - ТОВ",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "🚫",
-            href: "/agreements/home-rent"
+            href: "/agreements-now/sublease-tov-terminate"
         },
         {
             title: "Договір повернення - ТОВ",

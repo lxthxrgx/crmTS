@@ -45,7 +45,7 @@ export default function SubleaseActTov() {
     };
 
     try {
-      const res = await fetch('http://localhost:5294/api/Ping/TestTree', {
+      const res = await fetch('http://localhost:5294/api/subleasedogtov/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody),

@@ -1,5 +1,4 @@
-export default interface ISubleaseActTov
-{
+export default interface ISubleaseActTov{
   NameGroup: string,
   NumberGroup: number,
   ContractNumber: string;
