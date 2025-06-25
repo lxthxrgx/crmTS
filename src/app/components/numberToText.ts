@@ -97,7 +97,73 @@ export function formatUkrCurrencyText(amount: number): string {
   }
   
 
-export function AreaToText()
-{
+export function AreaToText(amount: number): string {
+  const onesFemale = [
+    '', 'одна', 'дві', 'три', 'чотири', 'п’ять', 'шість', 'сім', 'вісім', 'дев’ять'
+  ];
+  const teens = [
+    'десять', 'одинадцять', 'дванадцять', 'тринадцять', 'чотирнадцять',
+    'п’ятнадцять', 'шістнадцять', 'сімнадцять', 'вісімнадцять', 'дев’ятнадцять'
+  ];
+  const tens = [
+    '', '', 'двадцять', 'тридцять', 'сорок', 'п’ятдесят', 'шістдесят',
+    'сімдесят', 'вісімдесят', 'дев’яносто'
+  ];
+  const hundreds = [
+    '', 'сто', 'двісті', 'триста', 'чотириста',
+    'п’ятсот', 'шістсот', 'сімсот', 'вісімсот', 'дев’ятсот'
+  ];
 
+  const decimalForms: Record<number, [string, string, string]> = {
+    1: ['десята', 'десяті', 'десятих'],
+    2: ['сота', 'соті', 'сотих'],
+    3: ['тисячна', 'тисячні', 'тисячних']
+  };
+
+  function getWordForm(n: number, forms: [string, string, string]): string {
+    const lastDigit = n % 10;
+    const lastTwo = n % 100;
+    if (lastTwo >= 11 && lastTwo <= 19) return forms[2];
+    if (lastDigit === 1) return forms[0];
+    if (lastDigit >= 2 && lastDigit <= 4) return forms[1];
+    return forms[2];
+  }
+
+  function convertNumberToWords(n: number): string {
+    if (n === 0) return 'нуль';
+    const h = Math.floor(n / 100);
+    const t = Math.floor((n % 100) / 10);
+    const o = n % 10;
+    const words: string[] = [];
+
+    if (h > 0) words.push(hundreds[h]);
+    if (t === 1) {
+      words.push(teens[o]);
+    } else {
+      if (t > 1) words.push(tens[t]);
+      if (o > 0) words.push(onesFemale[o]);
+    }
+    return words.join(' ');
+  }
+
+  function capitalize(str: string): string {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  const [intPart, fracRaw = ''] = amount.toString().split('.');
+  const integer = parseInt(intPart);
+  const precision = fracRaw.length;
+  const fractional = parseInt(fracRaw);
+
+  const intText = convertNumberToWords(integer);
+  let result = capitalize(intText);
+
+  if (precision > 0 && fractional > 0) {
+    const fracText = convertNumberToWords(fractional);
+    const unit = getWordForm(fractional, decimalForms[precision]);
+    result += ` цілих ${fracText} ${unit}`;
+  }
+
+  return result;
 }
