@@ -59,8 +59,6 @@ export default function SubleaseTovTerminate() {
 
         setData((prev) => {
         const updated: ISubleaseTovTerminate = { ...prev, [name]: value };
-
-        const numericValue = parseFloat(value);
         const numericValue2 = parseFloat(value);
         switch (name) {
             case 'RoomArea':
