@@ -24,8 +24,8 @@ pipeline {
     stage('K8s Deploy') {
       steps {
         sh 'kubectl version --client'
-        sh "kubectl apply -n ${K8S_NAMESPACE} -f k8s/deployment.yaml"
-        sh "kubectl apply -n ${K8S_NAMESPACE} -f k8s/service.yaml"
+        sh "kubectl apply --validate=false -n ${K8S_NAMESPACE} -f k8s/deployment.yaml"
+        sh "kubectl apply --validate=false -n ${K8S_NAMESPACE} -f k8s/service.yaml"
       }
     }
   }
