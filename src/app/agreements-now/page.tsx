@@ -12,7 +12,7 @@ export default function Aggrements() {
             title: "Договір + Акт - ФОП",
             description: "Комплект документів для оренди житлової нерухомості",
             icon: "📄",
-            href: "/agreements-now/home-rent"
+            href: "/agreements-now/sublease-fop-dog-act"
         },
         {
             title: "Договір припинення  - ФОП",
