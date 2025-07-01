@@ -86,7 +86,7 @@ export default function SubleaseTovReturnAct() {
         >← Назад</button>
 
         <div className="max-w-4xl mx-auto">
-            <h1 className="text-2xl font-bold mb-6 text-center">Форма акту для повернення приміщення</h1>
+            <h1 className="text-2xl font-bold mb-6 text-center">Форма акту для повернення приміщення (ТОВ)</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
 
             <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>

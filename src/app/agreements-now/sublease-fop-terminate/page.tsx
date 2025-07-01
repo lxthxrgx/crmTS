@@ -1,23 +1,23 @@
 'use client'
-import ISubleaseTovTerminate from "@/app/model/ISubleaseTovTermiante";
+import ISubleaseFopTerminate from "@/app/model/ISubleaseFopTerminate";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { AreaToText } from '@/app/components/numberToText';
 
-export default function SubleaseTovTerminate() {
+export default function SubleaseFopTerminate() {
     const router = useRouter();
 
-    const [data, setData] = useState<ISubleaseTovTerminate>({
+    const [data, setData] = useState<ISubleaseFopTerminate>({
         NumberGroup: 0,
         NameGroup: '',
         ContractNumber: '',
         CreationContractDate: new Date(),
         CreationDate: new Date(),
         PipSublessor: '',
+        PipsSublessor: '',
         rnokppSublessor: '',
+        Edruofop: '',
         addressSublessor: '',
-        PipDirector: '',
-        PipsDirector: '',
         EndContractData: new Date(),
         RoomArea: 0,
         RoomAreaText: '',
@@ -39,7 +39,7 @@ export default function SubleaseTovTerminate() {
         };
 
         try {
-        const res = await fetch('http://localhost:5294/api/sublease_tov_termination/create', {
+        const res = await fetch('http://localhost:5294/api/sublease_fop_termination/create', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(requestBody),
@@ -58,7 +58,7 @@ export default function SubleaseTovTerminate() {
         const { name, value } = e.target;
 
         setData((prev) => {
-        const updated: ISubleaseTovTerminate = { ...prev, [name]: value };
+        const updated: ISubleaseFopTerminate = { ...prev, [name]: value };
         const numericValue2 = parseFloat(value);
         switch (name) {
             case 'RoomArea':
@@ -88,7 +88,7 @@ export default function SubleaseTovTerminate() {
         >← Назад</button>
 
         <div className="max-w-4xl mx-auto">
-            <h1 className="text-2xl font-bold mb-6 text-center">Форма додаткової угоди про припинення договору суборенди (ТОВ)</h1>
+            <h1 className="text-2xl font-bold mb-6 text-center">Форма додаткової угоди про припинення договору суборенди (ФОП)</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
 
             <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
@@ -117,23 +117,20 @@ export default function SubleaseTovTerminate() {
                 <label className="block">ПІП</label>
                 <input type="text" name="PipSublessor" value={data.PipSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-                <label className="block">ЄДРПОУ</label>
+                <label className="block">ПІП (скорочено)</label>
+                <input type="text" name="PipsSublessor" value={data.PipsSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+
+                <label className="block">РНОКПП</label>
                 <input type="text" name="rnokppSublessor" value={data.rnokppSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+
+                <label className="block">ЄДРПОУ</label>
+                <input type="text" name="Edruofop" value={data.Edruofop} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
                 <label className="block">Адреса</label>
                 <input type="text" name="addressSublessor" value={data.addressSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
                 <label className="block">Рахунок та назва банку</label>
                 <input type="text" name="BanckAccount" value={data.BanckAccount} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
-            </div>
-
-            <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
-                <h1 className='text-center'>Директор</h1>
-                <label className="block">ПІП</label>
-                <input type="text" name="PipDirector" value={data.PipDirector} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
-
-                <label className="block">ПІП (скорочено)</label>
-                <input type="text" name="PipsDirector" value={data.PipsDirector} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
             </div>
             
             <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
