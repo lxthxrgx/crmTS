@@ -37,7 +37,7 @@ export default function SubleaseTovReturnAct() {
         };
 
         try {
-            const apiUrl = process.env.REACT_APP_API;
+            const apiUrl = process.env.NEXT_PUBLIC_API;
             const res = await fetch(`${apiUrl}/api/sublease_tov_return_act/create`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
