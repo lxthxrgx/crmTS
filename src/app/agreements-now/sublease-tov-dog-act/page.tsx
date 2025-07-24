@@ -45,7 +45,8 @@ export default function SubleaseActTov() {
     };
 
     try {
-      const res = await fetch('http://localhost:5294/api/sublease_tov_dog_act/create', {
+      const apiUrl = process.env.REACT_APP_API;
+      const res = await fetch(`${apiUrl}/api/sublease_tov_dog_act/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody),
