@@ -17,12 +17,13 @@ pipeline {
 
     stage('Docker Build & Push') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-          sh 'docker version'
-          sh "docker login -u $DOCKER_USER --password-stdin $DOCKER_PASS"
-          sh "docker build -t ${DOCKER_HUB_REPO}:latest ."
-          sh "docker push ${DOCKER_HUB_REPO}:latest"
-        }
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+        sh """
+          echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin
+          docker build -t ${DOCKER_HUB_REPO}:latest .
+          docker push ${DOCKER_HUB_REPO}:latest
+        """
+      }
       }
     }
 
