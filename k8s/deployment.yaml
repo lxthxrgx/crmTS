@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: nextjs
-          image: lxthxrgx/nextjs-app:latest
-          imagePullPolicy: Never
+          image: lxthxrgx/crm:latest
           ports:
             - containerPort: 3000
+      imagePullSecrets:
+        - name: regcred

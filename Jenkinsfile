@@ -2,7 +2,8 @@ pipeline {
   agent any
 
   environment {
-    IMAGE_NAME = "crm-frontend"
+    IMAGE_NAME = "crm"
+    DOCKER_HUB_REPO = "lxthxrgx/crm"
     K8S_NAMESPACE = "default"
     KUBECONFIG = "/root/.kube/config"
   }
@@ -14,10 +15,14 @@ pipeline {
       }
     }
 
-    stage('Docker Build') {
+    stage('Docker Build & Push') {
       steps {
-        sh 'docker version'
-        sh "docker build -t ${IMAGE_NAME} ."
+        withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+          sh 'docker version'
+          sh "docker login -u $DOCKER_USER -p $DOCKER_PASS"
+          sh "docker build -t ${DOCKER_HUB_REPO}:latest ."
+          sh "docker push ${DOCKER_HUB_REPO}:latest"
+        }
       }
     }
 
