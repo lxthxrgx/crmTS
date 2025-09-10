@@ -1,0 +1,73 @@
+.card-title{
+    text-align: center;
+    font-size: 2.25rem;
+    margin-bottom: 1.25rem;
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),
+    0 4px 6px -4px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.card-type {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+    text-align: center;
+    font-size: 2.25rem;
+    margin-bottom: 1.25rem;
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),
+    0 4px 6px -4px rgba(0,0,0,0.1);
+}
+
+.card-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+    .card-columns {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .card-type {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+.feature-card {
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.75rem; /* ~12px */
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),
+              0 4px 6px -4px rgba(0,0,0,0.1);
+  padding: 1.5rem; /* 24px */
+  display: flex;
+  align-items: center; /* чтобы иконка и текст были по центру по вертикали */
+  gap: 1rem; /* отступ между иконкой и текстом */
+  margin: 10px
+}
+
+.feature-card-icon {
+  font-size: 2.25rem; /* text-4xl ~36px */
+  margin-bottom: 0.5rem;
+}
+
+.feature-card-title {
+  font-size: 1.25rem; /* text-xl ~20px */
+  font-weight: 600;   /* font-semibold */
+  margin-bottom: 0.5rem;
+}
+

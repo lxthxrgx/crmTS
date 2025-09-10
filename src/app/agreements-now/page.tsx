@@ -1,133 +1,145 @@
 'use client'
 
 import Link from "next/link"
-import FeatureCard from "../components/Card"
+import {Card, CardData} from "../components/Card"
 import { useRouter } from 'next/navigation'
+import "../css/card.css"
 
 export default function Aggrements() {
     const router = useRouter()
 
-    const DataSublease = [
+    const DataSublease:CardData[] = [
         {
-            title: "Договір + Акт - ФОП",
-            description: "Основний комплект документів для передачі житла в суборенду від ФОП: договір суборенди та акт передачі.",
+            title: "Договір + Акт",
             icon: "📄",
-            href: "/agreements-now/sublease-fop-dog-act"
+            href: "/agreements-now/sublease-fop-dog-act",
+            type: "ФОП"
         },
         {
-            title: "Додаткова угода про припинення - ФОП",
-            description: "Юридичний документ для офіційного припинення договору суборенди між ФОП та орендарем.",
+            title: "Додаткова угода про припинення",
             icon: "🚫",
-            href: "/agreements-now/sublease-fop-terminate"
+            href: "/agreements-now/sublease-fop-terminate",
+            type: "ФОП"
         },
         {
-            title: "Договір повернення - ФОП",
-            description: "Формалізація процедури повернення житла після завершення суборенди з боку ФОП.",
+            title: "Договір повернення",
             icon: "↩️",
-            href: "/agreements-now/sublease-fop-return-act"
+            href: "/agreements-now/sublease-fop-return-act",
+            type: "ФОП"
         },
         {
-            title: "Договір + Акт - ТОВ",
-            description: "Повний набір документів для суборенди житла від юридичної особи (ТОВ): договір та акт передачі.",
+            title: "Договір + Акт",
             icon: "📄",
-            href: "/agreements-now/sublease-tov-dog-act"
+            href: "/agreements-now/sublease-tov-dog-act",
+            type: "ТОВ"
         },
         {
-            title: "Додаткова угода про припинення - ТОВ",
-            description: "Документ для дострокового розірвання суборенди з боку ТОВ згідно з умовами чинного договору.",
+            title: "Додаткова угода про припинення",
             icon: "🚫",
-            href: "/agreements-now/sublease-tov-terminate"
+            href: "/agreements-now/sublease-tov-terminate",
+            type: "ТОВ"
         },
         {
-            title: "Договір повернення - ТОВ",
-            description: "Офіційний документ, що фіксує факт повернення об'єкта суборенди від ТОВ орендодавцю.",
+            title: "Договір повернення",
             icon: "↩️",
-            href: "/agreements-now/sublease-tov-terminate"
+            href: "/agreements-now/sublease-tov-terminate",
+            type: "ТОВ"
         },
     ]
 
 
-     const DataRent = [
+     const DataRent:CardData[] = [
         {
-            title: "Договір + Акт - ТОВ",
-            description: "Комплект документів для оренди житлової нерухомості",
+            title: "Договір + Акт",
             icon: "📄",
-            href: "/agreements-now/home-rent"
+            href: "/agreements-now/home-rent",
+            type: "ТОВ"
         },
         {
-            title: "Договір припинення - ТОВ",
-            description: "Комплект документів для оренди житлової нерухомості",
+            title: "Договір припинення",
             icon: "🚫",
-            href: "/agreements-now/home-rent"
+            href: "/agreements-now/home-rent",
+            type: "ТОВ"
         },
         {
-            title: "Договір повернення - ТОВ",
-            description: "Комплект документів для оренди житлової нерухомості",
+            title: "Договір повернення",
             icon: "↩️",
-            href: "/agreements-now/home-rent"
+            href: "/agreements-now/home-rent",
+            type: "ТОВ"
         },
         {
-            title: "Договір + Акт - ФОП",
-            description: "Комплект документів для оренди житлової нерухомості",
+            title: "Договір + Акт",
             icon: "📄",
-            href: "/agreements-now/home-rent"
+            href: "/agreements-now/home-rent",
+            type: "ФОП"
         },
         {
-            title: "Договір припинення  - ФОП",
-            description: "Комплект документів для оренди житлової нерухомості",
+            title: "Договір припинення",
             icon: "🚫",
-            href: "/agreements-now/home-rent"
+            href: "/agreements-now/home-rent",
+            type: "ФОП"
         },
         {
-            title: "Договір повернення  - ФОП",
-            description: "Комплект документів для оренди житлової нерухомості",
+            title: "Договір повернення",
             icon: "↩️",
-            href: "/agreements-now/home-rent"
+            href: "/agreements-now/home-rent",
+            type: "ФОП"
         },
     ]
 
+    const renderCards = (data: CardData[], type: "ФОП" | "ТОВ") => (
+        <div className="">
+        <h1 className="">{type}</h1>
+        <div className="">
+            {data
+            .filter((item) => item.type === type)
+            .map((item, index) => (
+                <Link
+                href={item.href as string }
+                key={index}
+                className=""
+                >
+                <Card title={item.title} icon={item.icon} />
+                </Link>
+            ))}
+        </div>
+        </div>
+    )
     return (
-        <div>
-              <div className="p-4">
+         <div className="p-4">
             <button
-                onClick={ ()=> router.push('/')}
-               className="bg-white text-black text-lg px-4 py-2 rounded-2xl shadow-lg m-5 hover:bg-gray-200 transition"
+                onClick={() => router.push('/')}
+                className="bg-white text-black text-lg px-4 py-2 rounded-2xl shadow-lg m-5 hover:bg-gray-200 transition"
             >
                 ← Назад
             </button>
 
-            <div className="text-center text-4xl mb-5">
-                    Суборенда
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
-                {Array.from({ length: 3 }, (_, i) => [DataSublease[i], DataSublease[i + 3]])
-                .flat()
-                .map((item, index) => (
-                    <Link href={item.href} key={index} className="block hover:opacity-90 transition">
-                        <FeatureCard
-                            title={item.title}
-                            description={item.description}
-                            icon={item.icon}
-                        />
-                    </Link>
-            ))}
-            </div>
-                <div className = "text-center text-4xl mb-5 mt-10">
-                    Оренда
+            <div className="card-title">
+                <h1>Суборенда</h1>
+
+                <div className="card-columns">
+                    <div className="card-type">
+                    {renderCards(DataSublease, "ФОП")}
+                    </div>
+                    <div className="card-type">
+                    {renderCards(DataSublease, "ТОВ")}
+                    </div>
                 </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {DataRent.map((item, index) => (
-                    <Link href={item.href} key={index} className="block hover:opacity-90 transition">
-                        <FeatureCard
-                            title={item.title}
-                            description={item.description}
-                            icon={item.icon}
-                        />
-                    </Link>
-                ))}
             </div>
-        </div>
+
+
+
+            <div className="card-title">
+                <h1>Оренда</h1>
+                <div className="card-columns">
+                    <div className="card-type">
+                    {renderCards(DataRent, "ФОП")}
+                    </div>
+                    <div className="card-type">
+                    {renderCards(DataRent, "ТОВ")}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
