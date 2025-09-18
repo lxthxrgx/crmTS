@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { formatUkrCurrencyText } from '@/app/components/numberToText';
 import ISubleaseFopDogAct from '@/app/model/ISubleaseFopDogAct';
 import { AreaToText } from '@/app/components/numberToText';
+// import "./page.css"
+// import "../../css/card.css"
 
 export default function SubleaseDogActFop() {
   const router = useRouter();
@@ -94,92 +96,124 @@ export default function SubleaseDogActFop() {
   };
 
   return (
-    <div className="text-white min-h-screen p-6">
-      <button
-        className="bg-white text-black text-lg px-4 py-2 rounded-2xl shadow-lg mb-6 hover:bg-gray-200 transition"
-        onClick={() => router.push('/agreements-now')}
-      >← Назад</button>
+    // <div className="text-white min-h-screen p-6">
+    //   <button
+    //     className="bg-white text-black text-lg px-4 py-2 rounded-2xl shadow-lg mb-6 hover:bg-gray-200 transition"
+    //     onClick={() => router.push('/agreements-now')}
+    //   >← Назад</button>
 
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6 text-center">Форма договору суборенди та акту (ФОП)</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    //   <div className="max-w-4xl mx-auto">
+    //     <h1 className="text-2xl font-bold mb-6 text-center">Форма договору суборенди та акту (ФОП)</h1>
+    //     <form onSubmit={handleSubmit} className="space-y-4">
 
-          <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
-            <label className="block">Номер відділення</label>
-            <input type="text" name="NumberGroup" value={data.NumberGroup} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //       <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
+    //         <label className="block">Номер відділення</label>
+    //         <input type="text" name="NumberGroup" value={data.NumberGroup} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-            <label className="block">Найменування відділення</label>
-            <input type="text" name="NameGroup" value={data.NameGroup} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }} />
+    //         <label className="block">Найменування відділення</label>
+    //         <input type="text" name="NameGroup" value={data.NameGroup} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }} />
 
-            <label className="block">Номер договору</label>
-            <input type="text" name="ContractNumber" value={data.ContractNumber} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }} />
+    //         <label className="block">Номер договору</label>
+    //         <input type="text" name="ContractNumber" value={data.ContractNumber} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }} />
 
-            <label className="block">Дата створення</label>
-            <input type="date" name="CreationDate" value={data.CreationDate.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //         <label className="block">Дата створення</label>
+    //         <input type="date" name="CreationDate" value={data.CreationDate.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-            <label className="block">Кінцева дата дії договору</label>
-            <input type="date" name="EndContractData" value={data.EndContractData.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
-          </div>
+    //         <label className="block">Кінцева дата дії договору</label>
+    //         <input type="date" name="EndContractData" value={data.EndContractData.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //       </div>
 
-          <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
-            <h1 className='text-center'>Суборендодавець</h1>
-            <label className="block">ПІП</label>
-            <input type="text" name="PipSublessor" value={data.PipSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //       <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
+    //         <h1 className='text-center'>Суборендодавець</h1>
+    //         <label className="block">ПІП</label>
+    //         <input type="text" name="PipSublessor" value={data.PipSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
             
-            <label className="block">ПІП (скорочено)</label>
-            <input type="text" name="PipsSublessor" value={data.PipsSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //         <label className="block">ПІП (скорочено)</label>
+    //         <input type="text" name="PipsSublessor" value={data.PipsSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-            <label className="block">РНОКПП</label>
-            <input type="text" name="rnokppSublessor" value={data.rnokppSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //         <label className="block">РНОКПП</label>
+    //         <input type="text" name="rnokppSublessor" value={data.rnokppSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-            <label className="block">ЄДРЮОФОП</label>
-            <input type="text" name="Edruofop" value={data.Edruofop} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //         <label className="block">ЄДРЮОФОП</label>
+    //         <input type="text" name="Edruofop" value={data.Edruofop} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-            <label className="block">Адреса</label>
-            <input type="text" name="addressSublessor" value={data.addressSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //         <label className="block">Адреса</label>
+    //         <input type="text" name="addressSublessor" value={data.addressSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-            <label className="block">Рахунок та назва банку</label>
-            <input type="text" name="BanckAccount" value={data.BanckAccount} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
-          </div>
+    //         <label className="block">Рахунок та назва банку</label>
+    //         <input type="text" name="BanckAccount" value={data.BanckAccount} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //       </div>
           
-          <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
-            <h1 className='text-center'>Приміщення</h1>
-            <label className="block">Площа</label>
-            <input type="number" name="RoomArea" value={data.RoomArea} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //       <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
+    //         <h1 className='text-center'>Приміщення</h1>
+    //         <label className="block">Площа</label>
+    //         <input type="number" name="RoomArea" value={data.RoomArea} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-            <label className="block">Площа (текстом)</label>
-            <input type="text" name="RoomAreaText" value={data.RoomAreaText} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //         <label className="block">Площа (текстом)</label>
+    //         <input type="text" name="RoomAreaText" value={data.RoomAreaText} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-            <label className="block">Місцезнаходження</label>
-            <input type="text" name="RoomAreaAddress" value={data.RoomAreaAddress} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //         <label className="block">Місцезнаходження</label>
+    //         <input type="text" name="RoomAreaAddress" value={data.RoomAreaAddress} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-            <label className="block">Суборендна плата</label>
-            <input type="number" name="Pricing" value={data.Pricing} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //         <label className="block">Суборендна плата</label>
+    //         <input type="number" name="Pricing" value={data.Pricing} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-            <label className="block">Суборендна плата (текстом)</label>
-            <input type="text" name="PricingText" value={data.PricingText} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
-          </div>
+    //         <label className="block">Суборендна плата (текстом)</label>
+    //         <input type="text" name="PricingText" value={data.PricingText} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //       </div>
 
-          <label className="block">Номер договору (Предмет договору)</label>
-          <input type="text" name="subleaseDopContractNumber" value={data.subleaseDopContractNumber} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //       <label className="block">Номер договору (Предмет договору)</label>
+    //       <input type="text" name="subleaseDopContractNumber" value={data.subleaseDopContractNumber} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-          <label className="block">Дата укладання договору</label>
-          <input type="date" name="subleaseDopStartDate" value={data.subleaseDopStartDate.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //       <label className="block">Дата укладання договору</label>
+    //       <input type="date" name="subleaseDopStartDate" value={data.subleaseDopStartDate.toISOString().substring(0,10)} onChange={handleDateChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
           
-          <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
-            <h1 className='text-center'>Орендодавець</h1>
-            <label className="block">ПІП</label>
-            <input type="text" name="subleaseDopName" value={data.subleaseDopName} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //       <div className='backdrop-blur-md bg-white/20 border border-white/30 rounded-xl shadow-lg p-6'>
+    //         <h1 className='text-center'>Орендодавець</h1>
+    //         <label className="block">ПІП</label>
+    //         <input type="text" name="subleaseDopName" value={data.subleaseDopName} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
 
-            <label className="block">ЄДРПОУ-РНОКПП</label>
-            <input type="text" name="subleaseDopRnokpp" value={data.subleaseDopRnokpp} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
-          </div>
+    //         <label className="block">ЄДРПОУ-РНОКПП</label>
+    //         <input type="text" name="subleaseDopRnokpp" value={data.subleaseDopRnokpp} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+    //       </div>
 
-          <button type="submit" className="w-full hover:bg-blue-700 text-black py-3 rounded-lg" style={{ backgroundColor: "#ffffffa8" }}>
-            Зберегти договір
-          </button>
-        </form>
+    //       <button type="submit" className="w-full hover:bg-blue-700 text-black py-3 rounded-lg" style={{ backgroundColor: "#ffffffa8" }}>
+    //         Зберегти договір
+    //       </button>
+    //     </form>
+    //   </div>
+    // </div>
+
+      <div className="grid-container">
+        <div className="card-title">
+            <input type="text" name="NumberGroup" placeholder='Номер відділення' value={data.NumberGroup} onChange={handleChange} style={{ backgroundColor: "#ffffffa8" }}/>
+            <input type="text" name="NameGroup" placeholder='Найменування відділення' value={data.NameGroup} onChange={handleChange} style={{ backgroundColor: "#ffffffa8" }} />
+            <input type="text" name="ContractNumber" placeholder='Номер договору' value={data.ContractNumber} onChange={handleChange} style={{ backgroundColor: "#ffffffa8" }} />
+            <input type="date" name="CreationDate" placeholder='Дата створення' value={data.CreationDate.toISOString().substring(0,10)} onChange={handleDateChange} style={{ backgroundColor: "#ffffffa8" }}/>
+            <input type="date" name="EndContractData" placeholder='Кінцева дата дії договору' value={data.EndContractData.toISOString().substring(0,10)} onChange={handleDateChange} style={{ backgroundColor: "#ffffffa8" }}/>      
+        </div>
+
+        <div className="card-title">
+          <h1 className='text-center'>Суборендодавець</h1>
+            <input type="text" name="PipSublessor" placeholder='ПІП' value={data.PipSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+            <input type="text" name="PipsSublessor" placeholder='ПІП (скорочено)' value={data.PipsSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+            <input type="text" name="rnokppSublessor" placeholder='РНОКПП' value={data.rnokppSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+            <input type="text" name="Edruofop" placeholder='ЄДРЮОФОП' value={data.Edruofop} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+            <input type="text" name="addressSublessor" placeholder='Адреса' value={data.addressSublessor} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+            <input type="text" name="BanckAccount" placeholder='Рахунок та назва банку' value={data.BanckAccount} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>       
+        </div>
+
+      <div className="card-title">
+        <h1 className='text-center'>Приміщення</h1>
+        <input type="number" name="RoomArea" placeholder='Площа' value={data.RoomArea} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+        <input type="text" name="RoomAreaText" placeholder='Площа (текстом)' value={data.RoomAreaText} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+        <input type="text" name="RoomAreaAddress" placeholder='Місцезнаходження' value={data.RoomAreaAddress} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+        <input type="number" name="Pricing" placeholder='Суборендна плата' value={data.Pricing} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>
+        <input type="text" name="PricingText" placeholder='Суборендна плата (текстом)' value={data.PricingText} onChange={handleChange} className="w-full p-3 bg-f bg-opacity-50 text-black placeholder-white rounded" style={{ backgroundColor: "#ffffffa8" }}/>       
       </div>
+      <div className="grid-item">4</div>
+      <div className="grid-item">5</div>
+      <div className="grid-item">6</div>
     </div>
   )
 }
