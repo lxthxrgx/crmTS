@@ -1,0 +1,17 @@
+.input {
+    width: 100%;
+    padding: 0.75rem;
+    color: #000;
+    border-radius: 0.25rem;
+    background-color: rgba(var(--bg-f-rgb, 200, 200, 200), 0.5);
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    background-color: "#ffffffa8";
+}
+
+.input::placeholder {
+    color: #fff;
+    opacity: 1;
+    background-color: "#ffffffa8";
+}

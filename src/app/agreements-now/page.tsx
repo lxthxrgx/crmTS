@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import "../css/card.css"
 
 export default function Aggrements() {
-    const router = useRouter()
 
     const DataSublease:CardData[] = [
         {
@@ -107,12 +106,6 @@ export default function Aggrements() {
     )
     return (
          <div className="p-4">
-            <button
-                onClick={() => router.push('/')}
-                className="bg-white text-black text-lg px-4 py-2 rounded-2xl shadow-lg m-5 hover:bg-gray-200 transition"
-            >
-                ← Назад
-            </button>
 
             <div className="card-title">
                 <h1>Суборенда</h1>

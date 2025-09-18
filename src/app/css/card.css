@@ -50,24 +50,41 @@
   backdrop-filter: blur(12px);
   background-color: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 0.75rem; /* ~12px */
+  border-radius: 0.75rem;
   box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),
               0 4px 6px -4px rgba(0,0,0,0.1);
-  padding: 1.5rem; /* 24px */
+  padding: 1.5rem;
   display: flex;
-  align-items: center; /* чтобы иконка и текст были по центру по вертикали */
-  gap: 1rem; /* отступ между иконкой и текстом */
+  align-items: center;
+  gap: 1rem;
   margin: 10px
 }
 
+.feature-card-form {
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),
+              0 4px 6px -4px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 10px;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-around;
+}
+
 .feature-card-icon {
-  font-size: 2.25rem; /* text-4xl ~36px */
+  font-size: 2.25rem;
   margin-bottom: 0.5rem;
 }
 
 .feature-card-title {
-  font-size: 1.25rem; /* text-xl ~20px */
-  font-weight: 600;   /* font-semibold */
+  font-size: 1.25rem;
+  font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
