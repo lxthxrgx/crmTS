@@ -8,6 +8,12 @@
     outline: none;
     box-sizing: border-box;
     background-color: "#ffffffa8";
+    color: black;
+    margin: 0.75rem;
+}
+
+.input::placeholder{
+    color: black;
 }
 
 .input::placeholder {
