@@ -1,0 +1,36 @@
+.float-input {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.float-input input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 16px;
+  border-radius: 0.25rem;
+  background: transparent;
+  outline: none;
+  background-color: rgba(var(--bg-f-rgb, 200, 200, 200), 0.5);
+}
+
+.float-input label {
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  color: white;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.1s ease all;
+  background: none;
+  padding: 0 4px;
+}
+
+.float-input input:focus + label,
+.float-input input:not(:placeholder-shown) + label {
+  top: -20px;
+  left: 6px;
+  font-size: 16px;
+  color: white;
+}

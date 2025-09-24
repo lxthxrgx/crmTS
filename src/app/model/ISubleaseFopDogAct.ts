@@ -2,7 +2,7 @@ export default interface ISubleaseFopDogAct{
     NameGroup: string,
     NumberGroup: number,
     ContractNumber: string;
-    CreationDate: Date;
+    CreationDate: string;
     PipSublessor:string;
     PipsSublessor:string;
     rnokppSublessor: string;
@@ -12,10 +12,10 @@ export default interface ISubleaseFopDogAct{
     RoomAreaText: string;
     RoomAreaAddress:string;
     subleaseDopContractNumber:string;
-    subleaseDopStartDate:Date;
+    subleaseDopStartDate:string;
     subleaseDopName:string;
     subleaseDopRnokpp:string;
-    EndContractData:Date;
+    EndContractData:string;
     Pricing: number;
     PricingText: string;
     BanckAccount: string;

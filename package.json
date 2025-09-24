@@ -12,6 +12,8 @@
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "antd": "^5.25.2",
     "next": "15.3.2",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.9.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
